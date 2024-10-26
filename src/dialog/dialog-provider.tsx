@@ -1,19 +1,23 @@
 import { JSX, createContext, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
+import gsap from "gsap"
+
+type GSAP = typeof gsap
+type Vars = Parameters<GSAP["from"]>["2"]
 
 export type DialogProviderContextValue = {
     config: {
         contentSpec: {
-            enterFrom: gsap.TweenVars
-            enterTo: gsap.TweenVars
-            leaveFrom: gsap.TweenVars
-            leaveTo: gsap.TweenVars
+            enterFrom: Vars
+            enterTo: Vars
+            leaveFrom: Vars
+            leaveTo: Vars
         }
         scrimSpec: {
-            enterFrom: gsap.TweenVars
-            enterTo: gsap.TweenVars
-            leaveFrom: gsap.TweenVars
-            leaveTo: gsap.TweenVars
+            enterFrom: Vars
+            enterTo: Vars
+            leaveFrom: Vars
+            leaveTo: Vars
         }
     }
     state: {

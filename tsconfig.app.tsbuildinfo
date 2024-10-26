@@ -1,1 +1,1 @@
-{"root":["./node_modules/gsap/types/index.d.ts","./src/index.ts","./src/main.tsx","./src/preview.tsx","./src/vite-env.d.ts","./src/dialog/dialog-close-button.tsx","./src/dialog/dialog-internal-provider.tsx","./src/dialog/dialog-provider.tsx","./src/dialog/dialog.tsx"],"version":"5.6.3"}
+{"root":["./src/index.ts","./src/main.tsx","./src/preview.tsx","./src/vite-env.d.ts","./src/dialog/dialog-close-button.tsx","./src/dialog/dialog-internal-provider.tsx","./src/dialog/dialog-provider.tsx","./src/dialog/dialog.tsx"],"version":"5.6.3"}
