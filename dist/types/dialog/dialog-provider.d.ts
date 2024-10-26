@@ -1,20 +1,17 @@
 import { JSX } from 'solid-js';
-import { default as gsap } from 'gsap';
-type GSAP = typeof gsap;
-type Vars = Parameters<GSAP["from"]>["2"];
 export type DialogProviderContextValue = {
     config: {
         contentSpec: {
-            enterFrom: Vars;
-            enterTo: Vars;
-            leaveFrom: Vars;
-            leaveTo: Vars;
+            enterFrom: gsap.TweenVars;
+            enterTo: gsap.TweenVars;
+            leaveFrom: gsap.TweenVars;
+            leaveTo: gsap.TweenVars;
         };
         scrimSpec: {
-            enterFrom: Vars;
-            enterTo: Vars;
-            leaveFrom: Vars;
-            leaveTo: Vars;
+            enterFrom: gsap.TweenVars;
+            enterTo: gsap.TweenVars;
+            leaveFrom: gsap.TweenVars;
+            leaveTo: gsap.TweenVars;
         };
     };
     state: {
@@ -30,4 +27,3 @@ export type DialogProviderProps = {
     }>;
 };
 export declare function DialogProvider(props: DialogProviderProps): JSX.Element;
-export {};
