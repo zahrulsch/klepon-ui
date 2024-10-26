@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+body {
+    @apply text-slate-700;
+
+    font-size: 14px;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
+}
