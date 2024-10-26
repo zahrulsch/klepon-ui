@@ -3,7 +3,11 @@
 **Klepon UI** adalah library komponen UI yang dibuat untuk [SolidJS](https://solidjs.com/). Berisi _Headless UI Component_, gunakan secara bebas.
 Dibuat dengan ❤️ oleh [Mantracode](https://github.com/mantracode).
 
-## Dialog
+## Installation
+
+### `pnpm add zahrulsch/klepon-ui#v0.0.1`
+
+### Dialog
 
 ```tsx
 import { createSignal } from "solid-js"
