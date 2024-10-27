@@ -1,6 +1,3 @@
-// @ts-ignore
-export declare type ref = "need gsap reference"
-
 import { JSX, createContext, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
 

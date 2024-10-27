@@ -1,7 +1,7 @@
-/// <reference path="../gsap/index.d.ts" />
+/// <reference path="gsap" />
 
 import { JSX } from "solid-js"
-
+export declare type ref = "need gsap reference"
 export type DialogProviderContextValue = {
     config: {
         contentSpec: {

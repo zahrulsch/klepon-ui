@@ -10,11 +10,7 @@ export default function Preview() {
 
     return (
         // Panggil DialogProvider sekali di root App Element
-        <DialogProvider
-            config={{
-                animationInSecond: 0.3,
-            }}
-        >
+        <DialogProvider config={{ animationInSecond: 0.3 }}>
             <div class="flex flex-col w-full justify-center mt-4 items-center gap-2">
                 <div>{openDialog() ? "Show" : "Hide"}</div>
                 <button

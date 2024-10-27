@@ -2,7 +2,6 @@ import { defineConfig } from "vite"
 import solid from "vite-plugin-solid"
 import path from "path"
 import dts from "vite-plugin-dts"
-import fs from "fs/promises"
 
 export default defineConfig({
     plugins: [
@@ -11,17 +10,6 @@ export default defineConfig({
             tsconfigPath: "./tsconfig.app.json",
             outDir: "dist/types",
             exclude: ["./src/main.tsx", "./src/preview.tsx"],
-            async afterBuild() {
-                const distDir = "./dist/types"
-
-                // create gsap type folder
-                const gsapTypesTargetDir = path.join(distDir, "gsap")
-                await fs.mkdir(gsapTypesTargetDir, { recursive: true })
-
-                // copy gsap type into folder
-                const gsapTypes = "./node_modules/gsap/types"
-                await fs.cp(gsapTypes, gsapTypesTargetDir, { recursive: true })
-            },
         }),
     ],
     css: {
