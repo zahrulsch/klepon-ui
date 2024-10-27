@@ -34,6 +34,7 @@ export default defineConfig({
             entry: path.resolve(__dirname, "src/index.ts"),
             name: "KleponUI",
             fileName: (format) => `klepon-ui.${format}.js`,
+            formats: ["es"],
         },
         rollupOptions: {
             external: ["solid-js", "gsap"],

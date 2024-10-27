@@ -1,12 +1,11 @@
 {
-    "name": "klepon",
+    "name": "klepon-ui",
     "private": false,
     "version": "0.0.2",
     "type": "module",
     "files": [
         "dist"
     ],
-    "main": "./dist/klepon-ui.umd.js",
     "module": "./dist/klepon-ui.es.js",
     "types": "./dist/types/index.d.ts",
     "exports": {

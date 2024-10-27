@@ -1,3 +1,5 @@
+/// <reference path="../../node_modules/gsap/types/index.d.ts" />
+
 import { JSX, createContext, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
 
