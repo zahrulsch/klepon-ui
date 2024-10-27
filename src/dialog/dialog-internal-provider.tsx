@@ -1,20 +1,9 @@
-import { JSX, createContext, createMemo, createSignal, onMount, useContext } from "solid-js"
+import { JSX, createMemo, createSignal, onMount } from "solid-js"
 import { useDialogForInternal } from "./dialog-provider"
 import { Ref } from "@solid-primitives/refs"
+import { DialogInternalContext } from "./dialog-internal-context"
+
 import gsap from "gsap"
-
-export type DialogInternalContextValue = {
-    onClose: VoidFunction
-    closeOnScrimClick?: boolean
-}
-
-const DialogInternalContext = createContext<DialogInternalContextValue | null>(null)
-
-export function useDialog() {
-    const ctx = useContext(DialogInternalContext)
-    if (!ctx) throw new Error("useDialog must be used within a DialogInternalProvider")
-    return ctx
-}
 
 export type DialogInternalProviderProps = {
     onClose: VoidFunction
@@ -30,14 +19,14 @@ export function DialogInternalProvider(props: DialogInternalProviderProps) {
     const scrimSpec = globalDialog.config.scrimSpec
     const contentSpec = globalDialog.config.contentSpec
 
-    let scrimGsap: gsap.core.Tween
-    // @ts-ignore
-    let contentGsap: gsap.core.Tween
+    let scrimGsap: gsap.core.Tween | undefined
+    let contentGsap: gsap.core.Tween | undefined
 
     function animateContentShow() {
         const content = contentRef()
         if (!content) return
 
+        contentGsap?.pause()
         gsap.set(content, contentSpec.enterFrom)
         contentGsap = gsap.to(content, contentSpec.enterTo)
     }
@@ -46,12 +35,15 @@ export function DialogInternalProvider(props: DialogInternalProviderProps) {
         const scrim = scrimRef()
         if (!scrim) return
 
+        scrimGsap?.pause()
         gsap.set(scrim, {
             inset: 0,
             position: "absolute",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            padding: "1.25rem",
+            overflow: "hidden",
             zIndex: globalDialog.state.latestZIndex,
         })
 
@@ -72,6 +64,7 @@ export function DialogInternalProvider(props: DialogInternalProviderProps) {
         const scrim = scrimRef()
         if (!scrim) return
 
+        scrimGsap?.pause()
         gsap.set(scrim, scrimSpec.leaveFrom)
         scrimGsap = gsap.to(scrim, scrimSpec.leaveTo)
     }
@@ -80,6 +73,7 @@ export function DialogInternalProvider(props: DialogInternalProviderProps) {
         const content = contentRef()
         if (!content) return
 
+        contentGsap?.pause()
         gsap.set(content, contentSpec.leaveFrom)
         contentGsap = gsap.to(content, contentSpec.leaveTo)
     }
@@ -88,7 +82,7 @@ export function DialogInternalProvider(props: DialogInternalProviderProps) {
         animateContentHide()
         animateScrimHide()
 
-        scrimGsap.then(() => {
+        scrimGsap?.then(() => {
             props.onClose?.()
         })
     }

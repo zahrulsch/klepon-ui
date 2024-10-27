@@ -1,5 +1,7 @@
 import { JSX, createContext, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
+import { contentSpec, scrimSpec } from "./specs"
+
 import { type AnimationVars } from "../lib.types"
 
 export type DialogProviderContextValue = {
@@ -23,30 +25,12 @@ export type DialogProviderContextValue = {
     requestRender: VoidFunction
 }
 
-const contentSpec: DialogProviderContextValue["config"]["contentSpec"] = {
-    enterFrom: { opacity: 0, y: -25, filter: "blur(5px)" },
-    enterTo: { opacity: 1, y: 0, filter: "blur(0px)" },
-    leaveFrom: { opacity: 1, y: 0, filter: "blur(0px)" },
-    leaveTo: { opacity: 0, y: 25, filter: "blur(5px)" },
-}
-
-const scrimSpec: DialogProviderContextValue["config"]["scrimSpec"] = {
-    enterFrom: { backgroundColor: "rgba(0, 0, 0, 0)", backdropFilter: "blur(0px)" },
-    enterTo: {
-        backgroundColor: "rgba(0, 0, 0, 0.125)",
-        backdropFilter: "blur(2px)",
-    },
-    leaveFrom: { backgroundColor: "rgba(0, 0, 0, 0.125)", backdropFilter: "blur(2px)" },
-    leaveTo: { backgroundColor: "rgba(0, 0, 0, 0)", backdropFilter: "blur(0px)" },
-}
-
 const DialogContext = createContext<DialogProviderContextValue | null>(null)
 
 export function useDialogForInternal() {
     const context = useContext(DialogContext)
-    if (context === null) {
+    if (context === null)
         throw new Error("useDialogForInternal must be used within a DialogProvider")
-    }
     return context
 }
 
@@ -65,7 +49,7 @@ export function DialogProvider(props: DialogProviderProps) {
     })
 
     function addDuration(vars: AnimationVars): AnimationVars {
-        return { ...vars, duration: props.config?.animationInSecond ?? 0.3 }
+        return { ...vars, duration: props.config?.animationInSecond ?? 0.25 }
     }
 
     const ctxValue: DialogProviderContextValue = {

@@ -2,9 +2,9 @@
 @tailwind utilities;
 @tailwind components;
 
-body {
-    @apply text-slate-700;
+:root {
+    @apply text-slate-600;
 
     font-size: 14px;
-    font-family: "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Calibri", Helvetica, sans-serif;
 }

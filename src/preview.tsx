@@ -10,45 +10,55 @@ export default function Preview() {
 
     return (
         // Panggil DialogProvider sekali di root App Element
-        <DialogProvider config={{ animationInSecond: 0.3 }}>
+        <DialogProvider>
             <div class="flex flex-col w-full justify-center mt-4 items-center gap-2">
-                <div>{openDialog() ? "Show" : "Hide"}</div>
                 <button
                     onClick={() => setOpenDialog((d) => !d)}
-                    class="px-2 py-1 rounded-md w-max bg-slate-500 text-white"
+                    class="px-2 py-1 font-medium rounded-md w-max bg-slate-600 text-white"
                 >
-                    Show Modal
+                    Show Dialog
                 </button>
-                <Dialog show={openDialog()} onClose={() => setOpenDialog(false)}>
-                    <div class="p-3 bg-white max-w-[400px] mx-auto shadow-lg rounded-xl flex flex-col items-center gap-0.5">
-                        <Dialog onClose={() => setOpenDialog2(false)} show={openDialog2()}>
-                            <div class="p-3 bg-white max-w-[400px] mx-auto shadow-lg rounded-xl flex flex-col items-center gap-0.5">
-                                <p>Second dialog content</p>
-                                <DialogCloseButton>
-                                    <button class="text-rose-500 py-1 px-2 border-b border-transparent hover:border-rose-400 w-max">
-                                        Close
-                                    </button>
-                                </DialogCloseButton>
+                <Dialog closeOnScrimClick show={openDialog()} onClose={() => setOpenDialog(false)}>
+                    <div class="p-4 bg-white max-w-[360px] mx-auto shadow-lg rounded-xl flex flex-col items-center gap-0.5">
+                        <Dialog
+                            closeOnScrimClick
+                            onClose={() => setOpenDialog2(false)}
+                            show={openDialog2()}
+                        >
+                            <div class="p-4 bg-white max-w-[400px] mx-auto shadow-lg rounded-xl flex flex-col items-center gap-0.5">
+                                <p class="">
+                                    Kotlin adalah bahasa pemrograman modern yang dikembangkan oleh
+                                    JetBrains, dirancang untuk interoperabilitas penuh dengan Java,
+                                    sehingga memudahkan pengembang Java untuk beralih. Kotlin
+                                    terkenal karena sintaksisnya yang ringkas, sistem tipe yang aman
+                                    dari null, dan dukungan untuk pemrograman asinkron melalui
+                                    coroutine. Bahasa ini banyak digunakan dalam pengembangan
+                                    aplikasi Android, di mana Kotlin diakui sebagai bahasa pilihan
+                                    oleh Google, serta dalam pengembangan aplikasi server dan web.
+                                    Fitur menarik lainnya termasuk fungsi ekstensi dan kemampuan
+                                    pengembangan multiplatform, yang memungkinkan berbagi kode di
+                                    berbagai platform seperti iOS dan web. Dengan dokumentasi resmi
+                                    yang lengkap dan komunitas yang aktif, Kotlin menjadi pilihan
+                                    yang semakin populer di kalangan pengembang.
+                                </p>
                             </div>
                         </Dialog>
 
-                        <p>
-                            Pramugari adalah anggota awak kabin pesawat yang bertugas untuk
-                            memastikan keselamatan dan kenyamanan penumpang selama penerbangan.
-                            Dalam konteks ini, pramugari merujuk pada wanita, sedangkan pramugara
-                            merujuk pada pria.
+                        <p class="">
+                            <strong>Pramugari</strong> adalah anggota awak kabin pesawat yang
+                            bertugas untuk memastikan keselamatan dan kenyamanan penumpang selama
+                            penerbangan. Dalam konteks ini, pramugari merujuk pada wanita, sedangkan
+                            pramugara merujuk pada pria.
                         </p>
-                        <div class="flex gap-2">
+                        <div class="flex gap-3 w-full justify-end mt-2">
                             <button
                                 onClick={() => setOpenDialog2(true)}
-                                class="text-sky-500 py-1 px-2 border-b border-transparent hover:border-sky-400 w-max"
+                                class="text-sky-500 font-semibold w-max"
                             >
-                                Open Second Dialog
+                                Second Dialog
                             </button>
                             <DialogCloseButton>
-                                <button class="text-rose-500 py-1 px-2 border-b border-transparent hover:border-rose-400 w-max">
-                                    Close
-                                </button>
+                                <button class="text-rose-500 font-semibold w-max">Close</button>
                             </DialogCloseButton>
                         </div>
                     </div>
