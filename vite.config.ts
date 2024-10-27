@@ -35,12 +35,5 @@ export default defineConfig({
                 },
             },
         },
-        minify: "esbuild",
-        target: "esnext",
-    },
-    esbuild: {
-        minifySyntax: true,
-        minifyIdentifiers: true,
-        minifyWhitespace: true,
     },
 })

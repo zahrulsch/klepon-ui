@@ -37,9 +37,6 @@ devDependencies:
   typescript:
     specifier: ~5.6.3
     version: 5.6.3
-  uglify-js:
-    specifier: ^3.19.3
-    version: 3.19.3
   vite:
     specifier: 5.4.9
     version: 5.4.9(@types/node@22.8.1)(sass@1.80.4)
@@ -2178,12 +2175,6 @@ packages:
 
   /ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
-    dev: true
-
-  /uglify-js@3.19.3:
-    resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
-    engines: {node: '>=0.8.0'}
-    hasBin: true
     dev: true
 
   /undici-types@6.19.8:
