@@ -1,19 +1,20 @@
 import { JSX, createContext, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
+import { type AnimationVars } from "../lib.types"
 
 export type DialogProviderContextValue = {
     config: {
         contentSpec: {
-            enterFrom: GSAPTweenVars
-            enterTo: GSAPTweenVars
-            leaveFrom: GSAPTweenVars
-            leaveTo: GSAPTweenVars
+            enterFrom: AnimationVars
+            enterTo: AnimationVars
+            leaveFrom: AnimationVars
+            leaveTo: AnimationVars
         }
         scrimSpec: {
-            enterFrom: GSAPTweenVars
-            enterTo: GSAPTweenVars
-            leaveFrom: GSAPTweenVars
-            leaveTo: GSAPTweenVars
+            enterFrom: AnimationVars
+            enterTo: AnimationVars
+            leaveFrom: AnimationVars
+            leaveTo: AnimationVars
         }
     }
     state: {
@@ -63,7 +64,7 @@ export function DialogProvider(props: DialogProviderProps) {
         latestZIndex: 99,
     })
 
-    function addDuration(vars: gsap.TweenVars): gsap.TweenVars {
+    function addDuration(vars: AnimationVars): AnimationVars {
         return { ...vars, duration: props.config?.animationInSecond ?? 0.3 }
     }
 

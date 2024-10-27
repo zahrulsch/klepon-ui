@@ -1,34 +1,30 @@
-/// <reference path="gsap" />
-
-import { JSX } from "solid-js"
-export declare type ref = "need gsap reference"
+import { JSX } from 'solid-js';
+import { AnimationVars } from '../lib.types';
 export type DialogProviderContextValue = {
     config: {
         contentSpec: {
-            enterFrom: GSAPTweenVars
-            enterTo: GSAPTweenVars
-            leaveFrom: GSAPTweenVars
-            leaveTo: GSAPTweenVars
-        }
+            enterFrom: AnimationVars;
+            enterTo: AnimationVars;
+            leaveFrom: AnimationVars;
+            leaveTo: AnimationVars;
+        };
         scrimSpec: {
-            enterFrom: GSAPTweenVars
-            enterTo: GSAPTweenVars
-            leaveFrom: GSAPTweenVars
-            leaveTo: GSAPTweenVars
-        }
-    }
+            enterFrom: AnimationVars;
+            enterTo: AnimationVars;
+            leaveFrom: AnimationVars;
+            leaveTo: AnimationVars;
+        };
+    };
     state: {
-        latestZIndex: number
-    }
-    requestRender: VoidFunction
-}
-export declare function useDialogForInternal(): DialogProviderContextValue
+        latestZIndex: number;
+    };
+    requestRender: VoidFunction;
+};
+export declare function useDialogForInternal(): DialogProviderContextValue;
 export type DialogProviderProps = {
-    children: JSX.Element
-    config?: Partial<
-        DialogProviderContextValue["config"] & {
-            animationInSecond: number
-        }
-    >
-}
-export declare function DialogProvider(props: DialogProviderProps): JSX.Element
+    children: JSX.Element;
+    config?: Partial<DialogProviderContextValue["config"] & {
+        animationInSecond: number;
+    }>;
+};
+export declare function DialogProvider(props: DialogProviderProps): JSX.Element;

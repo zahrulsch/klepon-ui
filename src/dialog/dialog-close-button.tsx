@@ -1,6 +1,6 @@
 import { Ref } from "@solid-primitives/refs"
 import { onMount } from "solid-js"
-import { JSX } from "solid-js/jsx-runtime"
+import { JSX } from "solid-js"
 import { useDialog } from "./dialog-internal-provider"
 
 export type DialogCloseButtonProps = {

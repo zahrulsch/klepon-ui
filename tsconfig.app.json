@@ -20,8 +20,6 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-
-        "types": ["gsap"],
         "removeComments": false
     },
     "include": ["src"]

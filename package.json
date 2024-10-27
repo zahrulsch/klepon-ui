@@ -17,23 +17,25 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "tsc -b && vite build"
+        "mini": "uglifyjs --compress --mangle-props --mangle --output dist/klepon-ui.es.js -- dist/klepon-ui.es.js",
+        "build": "tsc -b && vite build && pnpm mini"
     },
     "dependencies": {
-        "@solid-primitives/refs": "^1.0.8",
-        "gsap": "^3.12.5",
-        "solid-js": "^1.9.2"
+        "@solid-primitives/refs": "1.0.8",
+        "gsap": "3.12.5",
+        "solid-js": "1.9.3"
     },
     "devDependencies": {
-        "@types/jquery": "^3.5.32",
-        "@types/node": "^22.8.1",
-        "autoprefixer": "^10.4.20",
-        "postcss": "^8.4.47",
-        "sass": "^1.80.4",
-        "tailwindcss": "^3.4.14",
-        "typescript": "~5.6.2",
-        "vite": "^5.4.9",
-        "vite-plugin-dts": "^4.3.0",
-        "vite-plugin-solid": "^2.10.2"
+        "@types/jquery": "3.5.32",
+        "@types/node": "22.8.1",
+        "autoprefixer": "10.4.20",
+        "postcss": "8.4.47",
+        "sass": "1.80.4",
+        "tailwindcss": "3.4.14",
+        "typescript": "~5.6.3",
+        "uglify-js": "^3.19.3",
+        "vite": "5.4.9",
+        "vite-plugin-dts": "4.3.0",
+        "vite-plugin-solid": "2.10.2"
     }
 }

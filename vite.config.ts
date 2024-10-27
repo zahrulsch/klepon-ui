@@ -7,8 +7,8 @@ export default defineConfig({
     plugins: [
         solid(),
         dts({
-            tsconfigPath: "./tsconfig.app.json",
             outDir: "dist/types",
+            tsconfigPath: "./tsconfig.app.json",
             exclude: ["./src/main.tsx", "./src/preview.tsx"],
         }),
     ],
@@ -36,6 +36,7 @@ export default defineConfig({
             },
         },
         minify: "esbuild",
+        target: "esnext",
     },
     esbuild: {
         minifySyntax: true,
