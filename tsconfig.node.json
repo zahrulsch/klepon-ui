@@ -16,7 +16,8 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "removeComments": false
     },
     "include": ["vite.config.ts"]
 }

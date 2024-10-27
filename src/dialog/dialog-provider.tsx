@@ -1,4 +1,5 @@
-/// <reference path="../../node_modules/gsap/types/index.d.ts" />
+// @ts-ignore
+export declare type ref = "need gsap reference"
 
 import { JSX, createContext, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
@@ -6,16 +7,16 @@ import { createStore } from "solid-js/store"
 export type DialogProviderContextValue = {
     config: {
         contentSpec: {
-            enterFrom: gsap.TweenVars
-            enterTo: gsap.TweenVars
-            leaveFrom: gsap.TweenVars
-            leaveTo: gsap.TweenVars
+            enterFrom: GSAPTweenVars
+            enterTo: GSAPTweenVars
+            leaveFrom: GSAPTweenVars
+            leaveTo: GSAPTweenVars
         }
         scrimSpec: {
-            enterFrom: gsap.TweenVars
-            enterTo: gsap.TweenVars
-            leaveFrom: gsap.TweenVars
-            leaveTo: gsap.TweenVars
+            enterFrom: GSAPTweenVars
+            enterTo: GSAPTweenVars
+            leaveFrom: GSAPTweenVars
+            leaveTo: GSAPTweenVars
         }
     }
     state: {

@@ -14,9 +14,11 @@ export default defineConfig({
             async afterBuild() {
                 const distDir = "./dist/types"
 
+                // create gsap type folder
                 const gsapTypesTargetDir = path.join(distDir, "gsap")
                 await fs.mkdir(gsapTypesTargetDir, { recursive: true })
 
+                // copy gsap type into folder
                 const gsapTypes = "./node_modules/gsap/types"
                 await fs.cp(gsapTypes, gsapTypesTargetDir, { recursive: true })
             },
@@ -45,5 +47,11 @@ export default defineConfig({
                 },
             },
         },
+        minify: "esbuild",
+    },
+    esbuild: {
+        minifySyntax: true,
+        minifyIdentifiers: true,
+        minifyWhitespace: true,
     },
 })
