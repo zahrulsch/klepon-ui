@@ -18,7 +18,7 @@ export default function Preview() {
                         <PopupTrigger>
                             {(state) => (
                                 <button class="flex gap-3 items-center border rounded-md px-3 py-1">
-                                    <span>Dapatkan Info</span>
+                                    <span>Klik Untuk Dapatkan Info</span>
                                     <FaSolidChevronDown
                                         class={cn(
                                             "text-xs transition opacity-50",

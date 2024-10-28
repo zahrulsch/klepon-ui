@@ -36,7 +36,7 @@ export function PopupProvider(props: PopupProviderProps) {
     const [contextState, setContextState] = createStore<PopupContextValue["state"]>({
         isOpen: props.defaultOpen ?? false,
         placement: props.placement ?? "bottom-start",
-        animationDurationInMs: props.animationDurationInMs ?? 0.12,
+        animationDurationInMs: props.animationDurationInMs ?? 120,
     })
     const contextValue: PopupContextValue = {
         state: contextState,

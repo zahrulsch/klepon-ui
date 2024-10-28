@@ -1,6 +1,9 @@
 import { createSignal } from "solid-js"
 import { Dialog } from "../dialog/dialog"
 import { DialogCloseButton } from "../dialog/dialog-close-button"
+import { Popup } from "../popup/popup"
+import { PopupTrigger } from "../popup/popup-trigger"
+import { PopupBody } from "../popup/popup-body"
 
 export default function DialogPreview() {
     const [openDialog, setOpenDialog] = createSignal(false)
@@ -45,6 +48,19 @@ export default function DialogPreview() {
                         Dalam konteks ini, pramugari merujuk pada wanita, sedangkan pramugara
                         merujuk pada pria.
                     </p>
+                    <Popup>
+                        <PopupTrigger>
+                            <button> klik saya</button>
+                        </PopupTrigger>
+                        <PopupBody>
+                            <div class="p-4 bg-white max-w-[400px] mx-auto shadow-lg rounded-xl flex flex-col items-center gap-0.5">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. At saepe
+                                quam, magni vitae natus illum ullam dolores rerum vel perspiciatis
+                                porro quia recusandae veniam? Reiciendis debitis nulla voluptates ut
+                                nam.
+                            </div>
+                        </PopupBody>
+                    </Popup>
                     <div class="flex gap-3 w-full justify-end mt-2">
                         <button
                             onClick={() => setOpenDialog2(true)}

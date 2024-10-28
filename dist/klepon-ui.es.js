@@ -536,7 +536,7 @@ function $e(e) {
   const [n, t] = re({
     isOpen: e.defaultOpen ?? !1,
     placement: e.placement ?? "bottom-start",
-    animationDurationInMs: e.animationDurationInMs ?? 0.12
+    animationDurationInMs: e.animationDurationInMs ?? 120
   }), i = {
     state: n,
     setTrigger(o) {
