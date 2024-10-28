@@ -9,7 +9,7 @@ export default defineConfig({
         dts({
             outDir: "dist/types",
             tsconfigPath: "./tsconfig.app.json",
-            exclude: ["./src/main.tsx", "./src/preview.tsx"],
+            exclude: ["./src/main.tsx", "./src/preview.tsx", "./src/preview", "./src/utils"],
         }),
     ],
     css: {
@@ -27,11 +27,12 @@ export default defineConfig({
             formats: ["es"],
         },
         rollupOptions: {
-            external: ["solid-js", "gsap"],
+            external: ["solid-js", "gsap", "@popperjs/core"],
             output: {
                 globals: {
                     "solid-js": "solidJs",
                     gsap: "gsap",
+                    "@popperjs/core": "popper",
                 },
             },
         },
