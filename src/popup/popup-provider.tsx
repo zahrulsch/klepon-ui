@@ -1,9 +1,13 @@
 import { JSX, createContext, onCleanup, onMount, useContext } from "solid-js"
 import { createStore } from "solid-js/store"
-import { Placement } from "./popup"
 import { createPopper } from "@popperjs/core"
+import { Placement } from "../lib.types"
 
 import gsap from "gsap"
+
+if (import.meta.env.PROD) {
+    console.log("prod")
+}
 
 export type PopupContextValue = {
     state: {
@@ -30,6 +34,10 @@ export type PopupProviderProps = {
     defaultOpen?: boolean
     placement?: Placement
     animationDurationInMs?: number
+    offset?: [number, number]
+    trigger?: "click" | "hover"
+    unHoverHideToleranceInMs?: number
+    keepContentOnHover?: boolean
 }
 
 export function PopupProvider(props: PopupProviderProps) {
@@ -64,7 +72,7 @@ export function PopupProvider(props: PopupProviderProps) {
             modifiers: [
                 {
                     name: "offset",
-                    options: { offset: [0, 2] },
+                    options: { offset: props.offset ?? [0, 2] },
                 },
             ],
             onFirstUpdate() {
@@ -77,15 +85,14 @@ export function PopupProvider(props: PopupProviderProps) {
 
     function animateHide() {
         const content = contextState.contentRef as HTMLElement | undefined
-        const duration = contextState.animationDurationInMs / 1000
-
         if (!content) return
 
+        const duration = contextState.animationDurationInMs / 1000
         gsap.to(content, {
             opacity: 0,
             filter: "blur(5px)",
             y: "+=10px",
-            delay: 0.05,
+            delay: 0,
             duration,
         }).then(() => {
             setContextState("isOpen", false)
@@ -93,8 +100,12 @@ export function PopupProvider(props: PopupProviderProps) {
     }
 
     function animate() {
-        if (!contextState.isOpen) animateShow()
-        else animateHide()
+        if (!contextState.isOpen) {
+            animateShow()
+            document.addEventListener("click", onDocumentClick)
+        } else {
+            animateHide()
+        }
     }
 
     function onDocumentClick(ev: MouseEvent) {
@@ -103,19 +114,62 @@ export function PopupProvider(props: PopupProviderProps) {
 
         if (isOpen && !(trigger?.contains(target) || content?.contains(target))) {
             animateHide()
+            document.removeEventListener("click", onDocumentClick)
         }
+    }
+
+    let timeout: NodeJS.Timeout | undefined
+
+    function onMouseLeave() {
+        const content = contextState.contentRef
+        const trigger = contextState.triggerRef
+
+        if (props.keepContentOnHover) {
+            const timeoutDuration = props.unHoverHideToleranceInMs ?? 100
+
+            function listenHover(e: MouseEvent) {
+                clearTimeout(timeout)
+
+                timeout = setTimeout(() => {
+                    const target = e.target as HTMLElement
+                    const mouseOverContent = content?.contains(target)
+                    const mouseOverTrigger = trigger?.contains(target)
+
+                    if (!mouseOverContent && !mouseOverTrigger) {
+                        animateHide()
+                        document.removeEventListener("mousemove", listenHover)
+                        trigger?.addEventListener("mouseenter", onMouseEnter)
+                    }
+                }, timeoutDuration)
+            }
+
+            document.addEventListener("mousemove", listenHover)
+        } else {
+            animateHide()
+            trigger?.addEventListener("mouseenter", onMouseEnter)
+        }
+    }
+
+    function onMouseEnter() {
+        const trigger = contextState.triggerRef
+        animateShow()
+        trigger?.removeEventListener("mouseenter", onMouseEnter)
     }
 
     onMount(() => {
         const trigger = contextState.triggerRef
-        if (!trigger) return
 
-        trigger.addEventListener("click", animate)
-        document.addEventListener("click", onDocumentClick)
+        if (props.trigger == "click") {
+            trigger?.addEventListener("click", animate)
+        } else {
+            trigger?.addEventListener("mouseenter", onMouseEnter)
+            trigger?.addEventListener("mouseleave", onMouseLeave)
+        }
 
         onCleanup(() => {
             trigger?.removeEventListener("click", animate)
-            document.removeEventListener("click", onDocumentClick)
+            trigger?.removeEventListener("mouseenter", onMouseEnter)
+            trigger?.removeEventListener("mouseleave", onMouseLeave)
         })
     })
 

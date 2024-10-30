@@ -38,18 +38,20 @@ export type DialogProviderProps = {
     children: JSX.Element
     config?: Partial<
         DialogProviderContextValue["config"] & {
-            animationInSecond: number
+            animationInMs: number
+            initialZIndex: number
         }
     >
 }
 
 export function DialogProvider(props: DialogProviderProps) {
     const [dialogState, setDialogState] = createStore<DialogProviderContextValue["state"]>({
-        latestZIndex: 99,
+        latestZIndex: props.config?.initialZIndex ?? 99,
     })
 
     function addDuration(vars: AnimationVars): AnimationVars {
-        return { ...vars, duration: props.config?.animationInSecond ?? 0.25 }
+        const durationInMs = props.config?.animationInMs ?? 150
+        return { ...vars, duration: durationInMs / 1000 }
     }
 
     const ctxValue: DialogProviderContextValue = {

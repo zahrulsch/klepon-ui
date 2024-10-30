@@ -24,7 +24,8 @@ export declare function useDialogForInternal(): DialogProviderContextValue;
 export type DialogProviderProps = {
     children: JSX.Element;
     config?: Partial<DialogProviderContextValue["config"] & {
-        animationInSecond: number;
+        animationInMs: number;
+        initialZIndex: number;
     }>;
 };
 export declare function DialogProvider(props: DialogProviderProps): JSX.Element;

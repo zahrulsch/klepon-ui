@@ -530,3 +530,16 @@ interface CSSVars extends Partial<CSSProperties> {}
 export interface AnimationVars extends CSSVars {
     css?: CSSVars
 }
+
+declare type AutoPlacement = "auto" | "auto-start" | "auto-end"
+declare type BasePlacement = "top" | "bottom" | "right" | "left" | "auto"
+declare type VariationPlacement =
+    | "top-start"
+    | "top-end"
+    | "bottom-start"
+    | "bottom-end"
+    | "right-start"
+    | "right-end"
+    | "left-start"
+    | "left-end"
+export type Placement = AutoPlacement | BasePlacement | VariationPlacement

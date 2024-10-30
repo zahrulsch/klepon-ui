@@ -1,5 +1,5 @@
 import { JSX } from 'solid-js';
-import { Placement } from './popup';
+import { Placement } from '../lib.types';
 export type PopupContextValue = {
     state: {
         isOpen: boolean;
@@ -17,5 +17,9 @@ export type PopupProviderProps = {
     defaultOpen?: boolean;
     placement?: Placement;
     animationDurationInMs?: number;
+    offset?: [number, number];
+    trigger?: "click" | "hover";
+    unHoverHideToleranceInMs?: number;
+    keepContentOnHover?: boolean;
 };
 export declare function PopupProvider(props: PopupProviderProps): JSX.Element;

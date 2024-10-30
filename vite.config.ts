@@ -27,12 +27,11 @@ export default defineConfig({
             formats: ["es"],
         },
         rollupOptions: {
-            external: ["solid-js", "gsap", "@popperjs/core"],
+            external: ["solid-js", "gsap"],
             output: {
                 globals: {
                     "solid-js": "solidJs",
                     gsap: "gsap",
-                    "@popperjs/core": "popper",
                 },
             },
         },
